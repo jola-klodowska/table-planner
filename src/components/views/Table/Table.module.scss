@@ -1,0 +1,21 @@
+.tableLine {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-bottom: 2px solid #ECEBEB;
+}
+
+.direction {
+    display: flex;
+    flex-direction: row;
+}
+
+.table {
+    padding-right: 30px;
+}
+
+.status {
+    font-weight: bold;
+}
