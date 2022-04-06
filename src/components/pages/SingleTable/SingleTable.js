@@ -9,6 +9,7 @@ import FormPeople from '../../features/FormPeople/FormPeople';
 import FormBill from '../../features/FormBill/FormBill';
 import UpdateButton from '../../common/UpdateButton/UpdateButton';
 import { useState } from 'react';
+import { API_URL } from "../../../config";
 
 const SingleTable = props => {
     const { tableId } = useParams();
@@ -42,8 +43,9 @@ const SingleTable = props => {
             body: JSON.stringify(payload),
         };
 
-        fetch(`http://localhost:3131/tables/${tableId}`, options)
+        fetch(`${API_URL}/tables/${tableId}`, options)
     };
+
 
     const onStatusChange = selectValue => {
         if (selectValue === "Cleaning" || selectValue === "Free") {
