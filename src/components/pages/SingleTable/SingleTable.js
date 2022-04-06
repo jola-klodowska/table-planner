@@ -61,6 +61,11 @@ const SingleTable = props => {
     }
 
     const onPeopleChange = value => {
+        if (status === "Cleaning" || status === "Free") {
+            setPeople(0);
+            return;
+        }
+
         const inValue = parseInt(value);
         if (inValue > maxPeople) {
             setPeople(maxPeople);
