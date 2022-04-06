@@ -43,6 +43,30 @@ const SingleTable = props => {
         };
 
         fetch(`http://localhost:3131/tables/${tableId}`, options)
+    };
+
+    const onStatusChange = selectValue => {
+        if (selectValue === "Cleaning" || selectValue === "Free") {
+            setPeople(0);
+        }
+        setStatus(selectValue);
+    }
+
+    const onMaxPeopleChange = value => {
+        const inValue = parseInt(value);
+        if (people > inValue) {
+            setPeople(inValue);
+        }
+        setMaxPeople(inValue);
+    }
+
+    const onPeopleChange = value => {
+        const inValue = parseInt(value);
+        if (inValue > maxPeople) {
+            setPeople(maxPeople);
+        } else {
+            setPeople(inValue);
+        }
     }
 
     if (!tableData) return <Navigate to="/" />
@@ -50,8 +74,8 @@ const SingleTable = props => {
         <div>
             <h1 className={styles.title}>Table {tableData.id}</h1>
             <Form>
-                <FormStatus status={status} onStatusChange={setStatus} />
-                <FormPeople maxPeopleAmount={maxPeople} onMaxPeopleChange={setMaxPeople} peopleAmount={people} onPeopleChange={setPeople} />
+                <FormStatus status={status} onStatusChange={onStatusChange} />
+                <FormPeople maxPeopleAmount={maxPeople} onMaxPeopleChange={onMaxPeopleChange} peopleAmount={people} onPeopleChange={onPeopleChange} />
                 {status === "Busy" &&
                     <FormBill bill={bill} onBillChange={setBill} status={status} />
                 }
